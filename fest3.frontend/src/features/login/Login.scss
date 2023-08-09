@@ -1,0 +1,63 @@
+.login {
+    color: var(--black, #000);
+    font-size: 16px;
+    font-weight: 500;
+
+    .title {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    .wallets {
+        margin-top: 40px;
+
+        .wallet {
+            display: flex;
+            padding: 24px;
+            align-items: center;
+            gap: 16px;
+            border-radius: var(--corner-radius, 8px);
+            border: 1px solid var(--border, #d9d9d9);
+            background: var(--surface-gray-soft, #f4f4f4);
+            margin-bottom: 16px;
+            cursor: pointer;
+
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background-color: #ccc;
+            }
+
+            .name {
+                flex-grow: 1;
+                font-weight: 700;
+
+                .description {
+                    color: var(--font-gray, #8d8d8d);
+                    font-size: 14px;
+                }
+            }
+
+            .recommend {
+                color: #fff;
+                padding: 4px 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.24px;
+                text-transform: uppercase;
+                border-radius: 100px;
+                background: linear-gradient(0deg, var(--black, #000) 0%, var(--black, #000) 100%), #fff;
+            }
+
+            .icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .anticon {
+                font-size: 24px;
+            }
+        }
+    }
+}
