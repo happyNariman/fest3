@@ -9,6 +9,10 @@ contract Profile is RMRKAbstractEquippable, RMRKSoulbound, TokenURI {
     // Variables
     uint256 private _pricePerMint;
 
+    /// @notice Get Reputation points by NFT ID
+    /// @dev This also generates an `reputationPoints(uint256) getter
+    mapping(uint256 => uint256) public reputationPoints;
+
     // Constructor
     constructor(
       string memory collectionMetadata,
@@ -43,7 +47,8 @@ contract Profile is RMRKAbstractEquippable, RMRKSoulbound, TokenURI {
      */
     function mint(
         address to,
-        uint256 numToMint
+        uint256 numToMint,
+        uint256 initialReputationPoints
     ) public payable returns (uint256) {
         (uint256 nextToken, uint256 totalSupplyOffset) = _prepareMint(
             numToMint
@@ -52,6 +57,7 @@ contract Profile is RMRKAbstractEquippable, RMRKSoulbound, TokenURI {
 
         for (uint256 i = nextToken; i < totalSupplyOffset; ) {
             _safeMint(to, i, "");
+            reputationPoints[i] = initialReputationPoints;
             unchecked {
                 ++i;
             }
