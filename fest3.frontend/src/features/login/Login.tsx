@@ -25,9 +25,9 @@ function MetamaskLogin() {
 
 
 
+
       
   
-export default function () {
 
   return (
     <div className='login'>
@@ -68,7 +68,6 @@ export default function () {
     </div>
   )
 }
-}
-
+export default function Login() {}
 
 
