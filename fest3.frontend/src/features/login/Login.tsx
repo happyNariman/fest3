@@ -49,7 +49,7 @@ function MetamaskLogin() {
           <img className='icon' src={logoMetamask} />
           <div className='name'>
             <div>
-              <button onClick={connectMetamask}>Metamask</button>//style this one
+              <button onClick={connectMetamask}>Metamask</button>{/*The button is here please install it*/}
             </div>
             <div className='description'>Get +1 reputation point</div>
           </div>
