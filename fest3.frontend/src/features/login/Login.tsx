@@ -5,6 +5,7 @@ import './Login.scss'
 import logoWorldId from '@assets/logo-world-id.svg'
 import logoMetamask from '@assets/logo-metamask.svg'
 import logoTrustWallet from '@assets/logo-trustwallet.svg'
+
 function MetamaskLogin() { 
   const connectMetamask = async () => {
     if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask!="undefined"){
@@ -13,8 +14,8 @@ function MetamaskLogin() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         console.log(accounts[0]);
 
-      }catch(err){
-        console.error(err.message);
+      }catch (err: any){
+        console.error((err as Error).message);
       };
     }
     else{
@@ -22,6 +23,7 @@ function MetamaskLogin() {
       console.log("Please install Metamask");
   }
 }
+
 
 
 
