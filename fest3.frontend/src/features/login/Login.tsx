@@ -87,7 +87,9 @@ const addWalletListener = async () => {
           <img className='icon' src={logoMetamask} />
           <div className='name'>
             <div>
-              <button onClick={connectMetamask}>Metamask</button>{/*The button is here please install it*/}
+              <button onClick={connectMetamask}>{walletAddress && walletAddress.length > 0
+                ? `Connected: ${walletAddress.substring(0, 6)}..${walletAddress.substring(38)}`
+                : "Connect Wallet"}Metamask</button>{/*The button is here please install it*/}
             </div>
             <div className='description'>Get +1 reputation point</div>
           </div>
