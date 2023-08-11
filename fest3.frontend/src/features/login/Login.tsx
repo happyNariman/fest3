@@ -49,7 +49,7 @@ function MetamaskLogin() {
   const addWalletListener = async () => {
     try {
       if (typeof window.ethereum !== 'undefined') {
-        window.ethereum.on("accountsChanged", (accounts) => {
+        window.ethereum.on("accountsChanged", (accounts: string[]) => {
           setWalletAddress(accounts[0]);
           console.log(accounts[0]);
         });
