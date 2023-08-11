@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import './styles/app.scss'
-import Layout from '@components/core/Layout'
+import Layout from "@components/core/Layout"
 import Intro from '@pages/intro/Intro'
 import Events from '@pages/events/Events'
 import Login from '@features/login/Login'

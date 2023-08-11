@@ -5,9 +5,16 @@ import './Login.scss';
 import logoWorldId from '@assets/logo-world-id.svg';
 import logoMetamask from '@assets/logo-metamask.svg';
 import logoTrustWallet from '@assets/logo-trustwallet.svg';
+  import { useAuth0 } from "@auth0/auth0-react";
+
+
+
+
+
 
 function MetamaskLogin() {
   const [walletAddress, setWalletAddress] = useState<string>("");
+  const { loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     getCurrentWallet();
@@ -71,7 +78,7 @@ function MetamaskLogin() {
         <div className="wallet">
           <img className='icon' src={logoWorldId} alt="World Id" />
           <div className='name'>
-            <div>World Id</div>
+            <div><button onClick={() => loginWithRedirect()}>World ID</button></div>
             <div className='description'>Get +3 reputation point</div>
           </div>
           <div className='recommend'>Recommended</div>
@@ -86,7 +93,7 @@ function MetamaskLogin() {
                 {walletAddress && walletAddress.length > 0
                   ? `Connected: ${walletAddress.substring(0, 6)}..${walletAddress.substring(38)}`
                   : "Connect Wallet"}
-                Metamask{/*Style this button */}
+                Metamask
               </button>
             </div>
             <div className='description'>Get +1 reputation point</div>
@@ -106,6 +113,7 @@ function MetamaskLogin() {
     </div>
   );
 }
+
 
 export default function Login() {
   return (
