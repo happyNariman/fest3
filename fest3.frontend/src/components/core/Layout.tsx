@@ -7,7 +7,7 @@ import logo from '@assets/logo.svg';
 
 const { Header, Footer, Content } = LayoutAnt;
 
-const Layout = () => {
+export function Layout() {
   const locationObj = useLocation();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
@@ -47,5 +47,3 @@ const Layout = () => {
     </ConfigProvider>
   );
 };
-
-export default Layout;
