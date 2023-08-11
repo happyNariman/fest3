@@ -7,22 +7,58 @@ import logoMetamask from '@assets/logo-metamask.svg'
 import logoTrustWallet from '@assets/logo-trustwallet.svg'
 
 function MetamaskLogin() { 
-  const connectMetamask = async () => {
-    if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask!="undefined"){
-      try{
-        /*Metamask is installed*/
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        console.log(accounts[0]);
-
-      }catch (err: any){
+  const [walletAddress, setWalletAddress] = useState<string>("");
+  useEffect(() => {
+    getcurrentWallet();
+    addWalletListener();}, []); 
+    const connectMetamask = async () => {
+      try {
+        if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
+          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+          setWalletAddress(accounts[0]);
+          console.log(accounts[0]);
+        } else {
+          console.log("Please install Metamask");
+        }
+      } catch (err: any){
         console.error((err as Error).message);
-      };
-    }
-    else{
-      /*Metamask is not installed*/
-      console.log("Please install Metamask");
+      }
+    };
+    
   }
-}
+
+
+const getCurrentWallet = async () => {
+  try {
+    if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      if (accounts.length > 0) {
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+      } else {
+        console.log("Connect to Metamask using the Metamask button");
+      }
+    } else {
+      console.log("Please install Metamask");
+    }
+  } catch (err: any){
+    console.error((err as Error).message);
+  }
+};
+const addWalletListener = async () => {
+  try {
+    if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+      });
+    } else {
+      setWalletAddress("");
+      console.log("Please install Metamask");
+    }
+  } catch (err: any){
+    console.error((err as Error).message);
+  }
 
 
 
@@ -70,6 +106,7 @@ function MetamaskLogin() {
     </div>
   )
 }
+
 export default function Login() {}
 
 
