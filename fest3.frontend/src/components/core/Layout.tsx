@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { Col, ConfigProvider, Layout as LayoutAnt, Modal, Row, Space, theme } from 'antd';
 import themeDefault from '@styles/theme-default';
 import Login from "@features/login/Login";
-import logo from '@assets/logo.svg';
+import { Logo } from "./logo/Logo";
 
 const { Header, Footer, Content } = LayoutAnt;
 
@@ -17,14 +17,14 @@ export function Layout() {
         <LayoutAnt>
           {
             locationObj.pathname === '/' ? null :
-              <Header style={{ height: '96px' }}>
-                <Row align={'middle'} style={{ height: '100%' }}>
-                  <Col span={8}>
+              <Header style={{ height: '96px', padding: '0 40px' }}>
+                <Row align='middle' justify='space-between' style={{ height: '100%' }}>
+                  <Col>
                     <Link to="/">
-                      <img src={logo} alt="logo" style={{ width: '80px', height: '26px', verticalAlign: 'middle' }} />
+                      <Logo style={{ width: '80px', height: '26px', verticalAlign: 'middle' }} />
                     </Link>
                   </Col>
-                  <Col span={8} offset={8} style={{ textAlign: 'right' }}>
+                  <Col style={{ textAlign: 'right' }}>
                     <span className='button' onClick={() => setIsLoginModalOpen(!isLoginModalOpen)}>
                       Sign Up
                     </span>

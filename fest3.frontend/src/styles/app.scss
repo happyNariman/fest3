@@ -11,9 +11,10 @@ code {
 }
 
 .button {
+  display: inline-block;
   padding: 16px 32px;
   color: #fff;
-  //font-family: Satoshi Variable;
+  line-height: normal;
   font-size: 16px;
   font-weight: 700;
   border-radius: var(--button-corner, 100px);
