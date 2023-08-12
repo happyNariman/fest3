@@ -24,6 +24,13 @@ const config: HardhatUserConfig = {
       chainId: 11155111,
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
+    goerli: {
+      url: process.env.GOERLI_URL || '',
+      chainId: 5,
+      accounts: {
+        mnemonic: process.env.MNEMONIC !== undefined ? process.env.MNEMONIC : "",
+      },
+    },
     polygonMumbai: {
       url: process.env.MUMBAI_URL || '',
       chainId: 80001,
@@ -49,6 +56,7 @@ const config: HardhatUserConfig = {
       moonbaseAlpha: process.env.MOONBEAM_MOONSCAN_APIKEY || '', // Moonbeam Moonscan API Key
       moonbeam: process.env.MOONBEAM_MOONSCAN_APIKEY || '', // Moonbeam Moonscan API Key
       sepolia: process.env.ETHERSCAN_API_KEY || '', // Sepolia Etherscan API Key
+      goerli: process.env.ETHERSCAN_API_KEY || '', // Goerli Etherscan API Key
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || '', // Polygon Mumbai Etherscan API Key
       mainnet: process.env.ETHERSCAN_API_KEY || '', // Ethereum Etherscan API Key
       polygon: process.env.POLYGONSCAN_API_KEY || '', // Polygon Etherscan API Key

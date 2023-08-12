@@ -84,8 +84,8 @@ contract Fest3 {
     /// @notice Creating profile with +1 Reputation points
     function createProfile() public payable {
         
-        // Minting profile with +3 Reputation points
-        uint256 tokenId = profile.mint{value: msg.value}(msg.sender, 1, 3);
+        // Minting profile with +1 Reputation points
+        uint256 tokenId = profile.mint{value: msg.value}(msg.sender, 1, 1);
 
         // Emiting Event
         emit ProfileMinted(tokenId);

@@ -1,15 +1,15 @@
 import { ethers, run, network } from 'hardhat';
 import { BigNumber } from 'ethers';
-import { Profile } from '../typechain-types';
+import { EventTicket } from '../typechain-types';
 
 async function main() {
   await deployContracts();
 }
 
 async function deployContracts(): Promise<void> {
-  console.log(`Deploying Profile to ${network.name} blockchain...`);
+  console.log(`Deploying EventTicket to ${network.name} blockchain...`);
 
-  const contractFactory = await ethers.getContractFactory("Profile");
+  const contractFactory = await ethers.getContractFactory("EventTicket");
   const args = [
     "",
     BigNumber.from(100),
@@ -18,9 +18,9 @@ async function deployContracts(): Promise<void> {
     "",
     ethers.utils.parseUnits("0.1", 18)
     ] as const;
-  const contract: Profile = await contractFactory.deploy(...args);
+  const contract: EventTicket = await contractFactory.deploy(...args);
   await contract.deployed();
-  console.log(`Profile deployed to ${contract.address}.`);
+  console.log(`EventTicket deployed to ${contract.address}.`);
 
   const chainId = (await ethers.provider.getNetwork()).chainId;
   if (chainId === 31337) {
