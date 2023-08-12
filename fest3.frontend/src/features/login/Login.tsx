@@ -12,9 +12,11 @@ import logoTrustWallet from '@assets/logo-trustwallet.svg';
 
 
 
+
 function MetamaskLogin() {
   const [walletAddress, setWalletAddress] = useState<string>("");
   const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated,logout } = useAuth0();
 
   useEffect(() => {
     getCurrentWallet();
@@ -78,12 +80,18 @@ function MetamaskLogin() {
         <div className="wallet">
           <img className='icon' src={logoWorldId} alt="World Id" />
           <div className='name'>
-            <div><button onClick={() => loginWithRedirect()}>World ID</button></div>
+            <div>(<button onClick={() => loginWithRedirect()}>World ID</button>)
+            
+            </div>
             <div className='description'>Get +3 reputation point</div>
           </div>
           <div className='recommend'>Recommended</div>
           <RightCircleOutlined />
         </div>
+        <div><button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+            Log Out
+            </button></div>
+        
 
         <div className="wallet">
           <img className='icon' src={logoMetamask} alt="Metamask" />
