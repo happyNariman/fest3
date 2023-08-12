@@ -19,4 +19,15 @@ code {
   border-radius: var(--button-corner, 100px);
   background: var(--black, #000);
   cursor: pointer;
+
+  &--small {
+    border-radius: 56px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  &--grey {
+    color: #000;
+    background: var(--surface-gray-soft, #f6f6f7);
+  }
 }
