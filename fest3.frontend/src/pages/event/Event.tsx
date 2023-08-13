@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row, Space } from 'antd';
 import { CalendarOutlined, EnvironmentFilled, GlobalOutlined, LeftCircleOutlined } from '@ant-design/icons';
@@ -6,37 +6,12 @@ import { CalendarOutlined, EnvironmentFilled, GlobalOutlined, LeftCircleOutlined
 import './Event.scss';
 import imgDot from '@assets/dot.svg';
 import img1 from '@assets/dummyimages/event-card-1-big.png';
-import { ethers } from 'ethers';
 
 
 
 
 export default function Event() {
-    //Calling nft profile contract
-        useEffect(() => {
-            async function mintNFT() {
-                const ethers = require("ethers");
-                const providers = new ethers.providers.JsonRpcProvider(`https://goerli.optimism.io`);
-                const ProfileContract = await ethers.getContractFactory("Profile");
-                const profileContract = await ProfileContract.deploy();
-    
-                const recipient = "0x1a173673181D3e354374Cb417C0753eEb5499140";
-                const numToMint = 1;
-                const initialReputationPoints = 100;
-    
-                const tx = await profileContract.mint(
-                    recipient,
-                    numToMint,
-                    initialReputationPoints
-                );
-    
-                await tx.wait();
-    
-                console.log("Successfully minted Profile NFT!");
-            }
-    
-            mintNFT();})
-
+   
         return (
         <Row className='event' justify='center'>
             <Col xxl={10} xl={10} lg={12} md={22} sm={22} xs={22}>

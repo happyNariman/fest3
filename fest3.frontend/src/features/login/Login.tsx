@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+
 import { RightCircleOutlined } from '@ant-design/icons';
 
 import './Login.scss';
 import logoWorldId from '@assets/logo-world-id.svg';
 import logoMetamask from '@assets/logo-metamask.svg';
 import logoTrustWallet from '@assets/logo-trustwallet.svg';
-  import { useAuth0 } from "@auth0/auth0-react";
-
+import { useAuth0 } from "@auth0/auth0-react";
 function MetamaskLogin() {
   const [walletAddress, setWalletAddress] = useState<string>("");
   const { loginWithRedirect } = useAuth0();
@@ -17,7 +18,7 @@ function MetamaskLogin() {
     addWalletListener();
   }, []);
 
-  const connectMetamask = async () => {
+  const  connectMetamask = async () => {
     try {
       if (typeof window.ethereum !== 'undefined') {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -64,7 +65,15 @@ function MetamaskLogin() {
       console.error((err as Error).message);
     }
   };
-
+  //connecting to fest3 contract
+  const connectFest3 = async () => {
+    const ABI:any[]=[{"inputs":[{"internalType":"contract IWorldID","name":"_worldId","type":"address"},{"internalType":"contract IProfile","name":"_profile","type":"address"},{"internalType":"string","name":"_appId","type":"string"},{"internalType":"string","name":"_actionId","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"InvalidNullifier","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"contract EventTicket","name":"eventAddress","type":"address"}],"name":"EventCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"profileId","type":"uint256"}],"name":"ProfileMinted","type":"event"},{"inputs":[{"internalType":"string","name":"eventMetadata","type":"string"},{"internalType":"uint256","name":"totalNumberOfTickets","type":"uint256"},{"internalType":"uint256","name":"ticketPrice","type":"uint256"},{"internalType":"string","name":"ticketMetadata","type":"string"}],"name":"createEvent","outputs":[{"internalType":"contract EventTicket","name":"","type":"address"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"createProfile","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getAllEvents","outputs":[{"internalType":"contract EventTicket[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"root","type":"uint256"},{"internalType":"uint256","name":"nullifierHash","type":"uint256"},{"internalType":"uint256[8]","name":"proof","type":"uint256[8]"}],"name":"verifyAndCreateProfile","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"payable","type":"function"}];
+    const contractAddress:string="0x332D3d7F19CB120E4E3A78E765B1D6f8d5EB2715";
+    const provider=new ethers.providers.Web3Provider(window.ethereum);
+    const signer=provider.getSigner();
+    const fest3Contract=new ethers.Contract(contractAddress,ABI,signer);
+    console.log(fest3Contract.address);
+  }
   return (
     <div className='login'>
       <div className='title'>Login</div>
@@ -90,7 +99,7 @@ function MetamaskLogin() {
         <div className="wallet">
           <img className='icon' src={logoMetamask} alt="Metamask" />
           <div className='name'>
-            <div>
+            <div >
               <button onClick={connectMetamask}>
                 {walletAddress && walletAddress.length > 0
                   ? `Connected: ${walletAddress.substring(0, 6)}..${walletAddress.substring(38)}`
