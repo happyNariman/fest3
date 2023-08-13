@@ -83,8 +83,7 @@ function MetamaskLogin() {
   let [ProfileId,setProfileId]=useState<number>(0);
   const createProfile = async () => {
     const setProfileId=await connectFest3.createProfile();
-    const mintProfile=await setProfileId.wait();
-=======
+    const mintProfile=await setProfileId.wait();  
     const ABI: any[] = [{ "inputs": [{ "internalType": "contract IWorldID", "name": "_worldId", "type": "address" }, { "internalType": "contract IProfile", "name": "_profile", "type": "address" }, { "internalType": "string", "name": "_appId", "type": "string" }, { "internalType": "string", "name": "_actionId", "type": "string" }], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "InvalidNullifier", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "contract EventTicket", "name": "eventAddress", "type": "address" }], "name": "EventCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint256", "name": "profileId", "type": "uint256" }], "name": "ProfileMinted", "type": "event" }, { "inputs": [{ "internalType": "string", "name": "eventMetadata", "type": "string" }, { "internalType": "uint256", "name": "totalNumberOfTickets", "type": "uint256" }, { "internalType": "uint256", "name": "ticketPrice", "type": "uint256" }, { "internalType": "string", "name": "ticketMetadata", "type": "string" }], "name": "createEvent", "outputs": [{ "internalType": "contract EventTicket", "name": "", "type": "address" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "createProfile", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "getAllEvents", "outputs": [{ "internalType": "contract EventTicket[]", "name": "", "type": "address[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "root", "type": "uint256" }, { "internalType": "uint256", "name": "nullifierHash", "type": "uint256" }, { "internalType": "uint256[8]", "name": "proof", "type": "uint256[8]" }], "name": "verifyAndCreateProfile", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "payable", "type": "function" }];
     const contractAddress: string = "0x332D3d7F19CB120E4E3A78E765B1D6f8d5EB2715";
     const provider = new (ethers as any).providers.Web3Provider(window.ethereum);
@@ -125,13 +124,8 @@ function MetamaskLogin() {
         <div className="wallet">
           <img className='icon' src={logoWorldId} alt="World Id" />
           <div className='name'>
-<<<<<<< HEAD
             <div onClick={() => loginWithRedirect()}>
             
-=======
-            <div>(<button onClick={() => loginWithRedirect()}>World ID</button>)
-
->>>>>>> 26e3ef1426d10d8fe5b875d22b9a31517e883669
             </div>
             <div className='description'>Get +3 reputation point</div>
           </div>
