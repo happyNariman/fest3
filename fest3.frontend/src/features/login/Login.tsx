@@ -21,6 +21,7 @@ function MetamaskLogin() {
       setWalletAddress(account);
     }
   } 
+  let contract = new ethers.Contract(FEST3_ADDRESS, ABI, ethereum);
   const connectFest3 = async () => {
     const Address=FEST3_ADDRESS
     const abi=ABI
@@ -31,6 +32,9 @@ function MetamaskLogin() {
     console.log("hi")
   }
   connectFest3()
+  const createProfile = async () => {
+    const profile=await contract.createProfile()
+  }
 
 
   const worldIdOnSuccess = (e: any) => {
@@ -56,7 +60,7 @@ function MetamaskLogin() {
           action="verify" // this is your action name from the Developer Portal
           onSuccess={worldIdOnSuccess} // callback when the modal is closed
           handleVerify={worldIdHandleVerify} // optional callback when the proof is received
-          //credential_types={['orb', 'phone']} // optional, defaults to ['orb']
+          // redential_types={['orb', 'phone']} 
           enableTelemetry // optional, defaults to false
         >
           {({ open }) => (
