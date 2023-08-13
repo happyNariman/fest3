@@ -19,8 +19,12 @@ contract Fest3 {
     event ProfileMinted(uint256 indexed profileId);
 
     /// @notice Emitted when a new event is created
-    /// @param eventAddress The ID of the profile minted
+    /// @param eventAddress The Event Contract
     event EventCreated(EventTicket indexed eventAddress);
+
+    /// @notice Emitted when a ticket is bought
+    /// @param ticketId The ID of the profile minted
+    event TicketBought(uint256 indexed ticketId);
 
     /// Variables
     /// @dev The ProfileNFT instance that will be used for mint profiles
@@ -73,7 +77,7 @@ contract Fest3 {
 
         // Checking if user already have a fest3 profile
         require(profile.balanceOf(msg.sender) == 0, "User already have a profle");
-        
+
         // First, we make sure this person hasn't done this before
         if (nullifierHashes[nullifierHash]) revert InvalidNullifier();
 
@@ -90,8 +94,8 @@ contract Fest3 {
         // We now record the user has done this, so they can't do it again (proof of uniqueness)
         nullifierHashes[nullifierHash] = true;
 
-        // Minting profile with +3 Reputation points
-        uint256 tokenId = profile.mint{value: msg.value}(msg.sender, 1, 3);
+        // Minting profile with +4 Reputation points
+        uint256 tokenId = profile.mint{value: msg.value}(msg.sender, 1, 4);
 
         // Emiting Event
         emit ProfileMinted(tokenId);
@@ -148,6 +152,24 @@ contract Fest3 {
     /// @notice View all Events
     function getAllEvents() public view returns (EventTicket[] memory) {
         return _events;
+    }
+
+    /// @notice Buy Tickets of the event.
+    function buyTicket(EventTicket _eventAddress, uint256 profileTokenId) public payable returns (uint256) {
+
+        // Checking if user already have a fest3 profile
+        require(profile.balanceOf(msg.sender) > 0, "User must have a fest3 profile.");
+
+        // Checking if event is active
+        require(isEventActive[_eventAddress], "Event must be active");
+        
+        // Minting event ticket
+        uint256 tokenId = _eventAddress.nestMint{value: msg.value}(address(profile), 1, profileTokenId);
+
+        // Emiting Event
+        emit TicketBought(tokenId);
+
+        return tokenId;
     }
 
 }

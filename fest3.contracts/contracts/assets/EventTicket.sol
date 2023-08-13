@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 pragma solidity ^0.8.21;
-import "@rmrk-team/evm-contracts/contracts/implementations/abstract/RMRKAbstractEquippable.sol";
+import "@rmrk-team/evm-contracts/contracts/implementations/abstract/RMRKAbstractNestable.sol";
 import "../utils/TokenURI.sol";
 
-contract EventTicket is RMRKAbstractEquippable, TokenURI {
+contract EventTicket is RMRKAbstractNestable, TokenURI {
     // Variables
     uint256 private _pricePerMint;
 
@@ -33,16 +33,17 @@ contract EventTicket is RMRKAbstractEquippable, TokenURI {
     // Methods
     // Suggested Mint Functions
     /**
-     * @notice Used to mint the desired number of tokens to the specified address.
+     * @notice Used to mint the desired number of tokens to the specified profile.
      * @dev The "data" value of the "_safeMint" method is set to an empty value.
      * @dev Can only be called while the open sale is open.
      * @param to Address to which to mint the token
      * @param numToMint Number of tokens to mint
      * @return The ID of the first token to be minted in the current minting cycle
      */
-    function mint(
+    function nestMint(
         address to,
-        uint256 numToMint
+        uint256 numToMint,
+        uint256 destinationId
     ) public payable returns (uint256) {
         (uint256 nextToken, uint256 totalSupplyOffset) = _prepareMint(
             numToMint
@@ -50,7 +51,7 @@ contract EventTicket is RMRKAbstractEquippable, TokenURI {
         _chargeMints(numToMint);
 
         for (uint256 i = nextToken; i < totalSupplyOffset; ) {
-            _safeMint(to, i, "");
+            _nestMint(to, i, destinationId, "");
             unchecked {
                 ++i;
             }
