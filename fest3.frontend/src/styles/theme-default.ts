@@ -13,6 +13,12 @@ const theme: ThemeConfig = {
     components: {
         Layout: {
             colorBgHeader: '#fff',
+        },
+        Tabs: {
+            colorText: '#8d8d8d',
+            inkBarColor: '#000',
+            itemHoverColor: '#000',
+            itemSelectedColor: '#000',
         }
     }
 };

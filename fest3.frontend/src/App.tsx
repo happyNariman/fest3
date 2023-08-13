@@ -6,6 +6,7 @@ import { Layout, ErrorPage } from '@components/core';
 import Intro from '@pages/intro/Intro';
 import Events from '@pages/events/Events';
 import Event from '@pages/event/Event';
+import MyProfilePage from '@pages/my-profile/MyProfilePage';
 import Login from '@features/login/Login';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="intro" element={<Intro />} />
           <Route path="events" element={<Events />} />
           <Route path="event" element={<Event />} />
+          <Route path="profile" element={<MyProfilePage />} />
           <Route path="login" element={<Row justify='center'><Col span={8}><Login /></Col></Row>} />
         </Route>
         <Route path="*" element={<ErrorPage error={new Error('Page not found')} />} />

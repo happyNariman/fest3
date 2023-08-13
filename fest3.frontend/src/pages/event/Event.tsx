@@ -11,8 +11,8 @@ import img1 from '@assets/dummyimages/event-card-1-big.png';
 
 
 export default function Event() {
-   
-        return (
+
+    return (
         <Row className='event' justify='center'>
             <Col xxl={10} xl={10} lg={12} md={22} sm={22} xs={22}>
                 <div>
@@ -35,9 +35,9 @@ export default function Event() {
                         <Space direction="vertical">
                             <Space align="center" wrap={true}>
                                 <EnvironmentFilled style={{ fontSize: '24px' }} />
-                                <span>{'<City>'}</span>
+                                <span>{'Lisbon'}</span>
                                 <img src={imgDot} />
-                                <span>{'<Country>'}</span>
+                                <span>{'Portugal'}</span>
                             </Space>
                             <Space>
                                 <CalendarOutlined style={{ fontSize: '24px' }} />

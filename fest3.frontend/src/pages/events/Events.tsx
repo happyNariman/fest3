@@ -15,8 +15,8 @@ const events = [
         title: 'Crypto 101',
         img: img1,
         location: {
-            city: '<City>',
-            country: '<Country>'
+            city: 'Lisbon',
+            country: 'Portugal'
         },
         date: 'April 14, 2024 · 4pm - April 21, 2024 · 8pm WITA',
         badges: ['free'],
@@ -33,7 +33,7 @@ const events = [
         isFeatured: true,
     },
     {
-        title: 'Crypto',
+        title: 'CryptoW3',
         img: img3,
         location: {
             city: 'London',

@@ -43,8 +43,8 @@ export default function Intro() {
               <img src={logoOptimism} height='85px' width='85px' />
 
               <div>
-                <h2>Pay with Crypto</h2>
-                Use your favorite wallet to pay for your favorite Web3 events
+                <h2>Powered by Optimism</h2>
+                Decentralized application deployed on Optimism.
               </div>
             </Card>
           </Col>
@@ -52,8 +52,8 @@ export default function Intro() {
             <Card className='intro-page__card' bodyStyle={cardBodyStyle}>
               <img src={digitalWallet} height='89px' width='89px' />
               <div>
-                <h2>Powered by NFTs</h2>
-                Scale your reputation and use your NFTs to access exclusive benefits.
+                <h2>Pay with Crypto</h2>
+                Use your favorite wallet to pay for your favorite Web3 events
               </div>
             </Card>
           </Col>

@@ -1,0 +1,65 @@
+.my-profile-page {
+    display: flex;
+    padding: 88px 0px 40px 0px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    &__body {
+        display: flex;
+        width: 480px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        color: var(--black, #000);
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+    }
+}
+
+.tabs {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    color: var(--font-gray, #8d8d8d);
+    font-size: 16px;
+    font-weight: 700;
+
+    &__tab {
+        display: flex;
+        height: 32px;
+        align-items: flex-start;
+        gap: 8px;
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 3px solid var(--black, #8d8d8d);
+        }
+
+        &--selected {
+            color: var(--black, #000);
+            border-bottom: 3px solid var(--black, #000);
+
+            &:hover {
+                border-bottom-color: #000;
+            }
+        }
+    }
+}
