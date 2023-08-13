@@ -25,13 +25,13 @@ function MetamaskLogin() {
     const Address=FEST3_ADDRESS
     const abi=ABI
     const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     await window.ethereum.enable();
     const contract = new ethers.Contract(Address, abi, signer); 
+    console.log("hi")
   }
+  connectFest3()
 
-<<<<<<< HEAD
-=======
 
   const worldIdOnSuccess = (e: any) => {
     console.log('!!! IDKitWidget onSuccess', e);
@@ -42,7 +42,6 @@ function MetamaskLogin() {
     console.log('!!! IDKitWidget handleVerify', e);
   };
 
->>>>>>> 20462e6e8b50fd1b1a9fe1025b9f3794f3b05a50
 
 
   return (
