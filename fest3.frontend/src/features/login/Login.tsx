@@ -91,21 +91,19 @@ function MetamaskLogin() {
           <div className='recommend'>Recommended</div>
           <RightCircleOutlined />
         </div>
-        <div><button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-            Log Out
-            </button></div>
+        
         
 
-        <div className="wallet">
+        <div className="wallet" onClick={connectMetamask}>
           <img className='icon' src={logoMetamask} alt="Metamask" />
           <div className='name'>
             <div >
-              <button onClick={connectMetamask}>
+              
                 {walletAddress && walletAddress.length > 0
                   ? `Connected: ${walletAddress.substring(0, 6)}..${walletAddress.substring(38)}`
                   : "Connect Wallet"}
-                Metamask
-              </button>
+                
+              
             </div>
             <div className='description'>Get +1 reputation point</div>
           </div>
