@@ -4,6 +4,7 @@ pragma solidity ^0.8.13;
 import "@worldcoin/world-id-contracts/src/libraries/ByteHasher.sol";
 import "@worldcoin/world-id-contracts/src/interfaces/IWorldID.sol";
 import "./interfaces/IProfile.sol";
+import "./assets/EventTicket.sol";
 
 contract Fest3 {
     using ByteHasher for bytes;
@@ -17,6 +18,11 @@ contract Fest3 {
     /// @param profileId The ID of the profile minted
     event ProfileMinted(uint256 indexed profileId);
 
+    /// @notice Emitted when a new event is created
+    /// @param eventAddress The ID of the profile minted
+    event EventCreated(EventTicket indexed eventAddress);
+
+    /// Variables
     /// @dev The ProfileNFT instance that will be used for mint profiles
     IProfile internal immutable profile;
 
@@ -28,6 +34,12 @@ contract Fest3 {
 
     /// @dev The World ID group ID (always 1)
     uint256 internal immutable groupId = 1;
+
+    /// @dev The Array of all Upcoming Events 
+    EventTicket[] private _events;
+
+    /// @dev Whether an event is active or not
+    mapping(EventTicket => bool) internal isEventActive;
 
     /// @dev Whether a nullifier hash has been used already. Used to guarantee an action is only performed once by a single person
     mapping(uint256 => bool) internal nullifierHashes;
@@ -57,7 +69,11 @@ contract Fest3 {
         uint256 root,
         uint256 nullifierHash,
         uint256[8] calldata proof
-    ) public payable {
+    ) public payable returns (uint256) {
+
+        // Checking if user already have a fest3 profile
+        require(profile.balanceOf(msg.sender) == 0, "User already have a profle");
+        
         // First, we make sure this person hasn't done this before
         if (nullifierHashes[nullifierHash]) revert InvalidNullifier();
 
@@ -79,15 +95,59 @@ contract Fest3 {
 
         // Emiting Event
         emit ProfileMinted(tokenId);
+
+        return tokenId;
     }
 
     /// @notice Creating profile with +1 Reputation points
-    function createProfile() public payable {
+    function createProfile() public payable returns (uint256) {
+
+        // Checking if user already have a fest3 profile
+        require(profile.balanceOf(msg.sender) == 0, "User already have a profle");
         
         // Minting profile with +1 Reputation points
         uint256 tokenId = profile.mint{value: msg.value}(msg.sender, 1, 1);
 
         // Emiting Event
         emit ProfileMinted(tokenId);
+
+        return tokenId;
     }
+
+    /// @notice Creating new Fest3 Event. Will be allowed for only Moderator
+    /// @param eventMetadata The Metadata of the event.
+    /// @param totalNumberOfTickets The total number of tickets available for the event.
+    /// @param ticketPrice The Ticket Price.
+    /// @param ticketMetadata The Ticket Metadata.
+    function createEvent(
+        string memory eventMetadata,
+        uint256 totalNumberOfTickets,
+        uint256 ticketPrice,
+        string memory ticketMetadata
+    ) public returns (EventTicket) {
+        // Creating new Event
+        EventTicket eventTicket = new EventTicket(
+            eventMetadata, 
+            totalNumberOfTickets,
+            address(0),
+            0,
+            ticketMetadata,
+            ticketPrice);
+
+        _events.push(eventTicket);
+
+        // Mapping event as active
+        isEventActive[eventTicket] = true;
+
+        // Emiting Event
+        emit EventCreated(eventTicket);
+
+        return eventTicket;
+    }
+
+    /// @notice View all Events
+    function getAllEvents() public view returns (EventTicket[] memory) {
+        return _events;
+    }
+
 }
