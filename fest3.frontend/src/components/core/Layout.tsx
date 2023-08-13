@@ -33,7 +33,9 @@ export function Layout() {
                 <Modal
                   open={isLoginModalOpen}
                   onCancel={() => setIsLoginModalOpen(false)}
-                  footer={[]}>
+                  footer={[]}
+                  zIndex={9}
+                >
                   <Login />
                 </Modal>
               </Header>
