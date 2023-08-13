@@ -7,12 +7,6 @@ import logoMetamask from '@assets/logo-metamask.svg';
 import logoTrustWallet from '@assets/logo-trustwallet.svg';
   import { useAuth0 } from "@auth0/auth0-react";
 
-
-
-
-
-
-
 function MetamaskLogin() {
   const [walletAddress, setWalletAddress] = useState<string>("");
   const { loginWithRedirect } = useAuth0();
