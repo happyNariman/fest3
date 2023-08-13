@@ -19,9 +19,15 @@ function MetamaskLogin() {
       const account=accounts[0];
       setWalletAddress(account);
     }
+  } 
+  const connectFest3 = async () => {
+    const Address=FEST3_ADDRESS
+    const abi=ABI
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = provider.getSigner();
+    await window.ethereum.enable();
+    const contract = new ethers.Contract(Address, abi, signer); 
   }
-
-  
 
 
 
