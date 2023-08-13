@@ -32,7 +32,7 @@ async function deployContracts(): Promise<void> {
   console.log(`Deploying Fest3 to ${network.name} blockchain...`);
 
   const contractFactoryFest3 = await ethers.getContractFactory("Fest3");
-  const worldIdAddress = "0x11cA3127182f7583EfC416a8771BD4d11Fae4334";
+  const worldIdAddress = "0x515f06B36E6D3b707eAecBdeD18d8B384944c87f"; // Optimism Goerli
   const argsFest3 = [
     worldIdAddress,
     contractProfile.address,

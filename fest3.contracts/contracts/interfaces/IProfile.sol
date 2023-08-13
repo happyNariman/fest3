@@ -21,4 +21,11 @@ interface IProfile {
      * @return The price per mint of a single token expressed in the lowest denomination of a native currency
      */
     function pricePerMint() external view returns (uint256);
+
+    /**
+     * @notice Used to retrieve the profile NFT balance for and address.
+     * @param owner Address for which the balance is requied
+     * @return Balance
+     */
+    function balanceOf(address owner) external view returns (uint256);
 }
