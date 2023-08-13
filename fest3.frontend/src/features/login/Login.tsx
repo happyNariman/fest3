@@ -20,20 +20,20 @@ function MetamaskLogin() {
       const account = accounts[0];
       setWalletAddress(account);
     }
-  } 
+  }
   let contract = new ethers.Contract(FEST3_ADDRESS, ABI, ethereum);
   const connectFest3 = async () => {
-    const Address=FEST3_ADDRESS
-    const abi=ABI
+    const Address = FEST3_ADDRESS
+    const abi = ABI
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     await window.ethereum.enable();
-    const contract = new ethers.Contract(Address, abi, signer); 
+    const contract = new ethers.Contract(Address, abi, signer);
     console.log("hi")
   }
   connectFest3()
   const createProfile = async () => {
-    const profile=await contract.createProfile()
+    const profile = await contract.createProfile()
   }
 
 
@@ -67,6 +67,7 @@ function MetamaskLogin() {
             <div className="wallet" onClick={open}>
               <img className='icon' src={logoWorldId} alt="World Id" />
               <div className='name'>
+                <div>World ID</div>
                 <div className='description'>Get +3 reputation point</div>
               </div>
               <div className='recommend'>Recommended</div>
