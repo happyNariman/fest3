@@ -9,7 +9,7 @@ import logoTrustWallet from '@assets/logo-trustwallet.svg';
 import { useAuth0 } from "@auth0/auth0-react";
 import { IDKitWidget } from '@worldcoin/idkit';
 
-function MetamaskLogin() {
+function MetamaskLogin(props: { authorizationCompleted?: any }) {
   const [walletAddress, setWalletAddress] = useState<string>("");
   const { loginWithRedirect } = useAuth0();
   const { isAuthenticated, logout } = useAuth0();
@@ -39,7 +39,8 @@ function MetamaskLogin() {
 
   const worldIdOnSuccess = (e: any) => {
     console.log('!!! IDKitWidget onSuccess', e);
-    alert('World ID connected successfully!');
+    props.authorizationCompleted();
+    //alert('World ID connected successfully!');
   };
 
   const worldIdHandleVerify = (e: any) => {
@@ -103,10 +104,10 @@ function MetamaskLogin() {
 }
 
 
-export default function Login() {
+export default function Login(props: { authorizationCompleted?: any }) {
   return (
     <div className='login-container'>
-      <MetamaskLogin />
+      <MetamaskLogin authorizationCompleted={props.authorizationCompleted} />
     </div>
   );
 }
