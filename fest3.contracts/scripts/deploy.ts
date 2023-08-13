@@ -36,8 +36,8 @@ async function deployContracts(): Promise<void> {
   const argsFest3 = [
     worldIdAddress,
     contractProfile.address,
-    "Fest3 Application",
-    "Verifying User's Identity by WorldId"
+    "app_staging_05230913fab7e8ffd8f378ba7070975b",
+    "verify"
     ] as const;
     const contractFest3: Fest3 = await contractFactoryFest3.deploy(...argsFest3);
     await contractFest3.deployed();
