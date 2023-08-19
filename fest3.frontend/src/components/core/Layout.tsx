@@ -29,10 +29,10 @@ export function Layout() {
                   </Col>
                   <Col style={{ textAlign: 'right' }}>
                     {isAuthorized ?
-                      <span style={{ cursor: 'pointer' }}>
+                      <Link to='/profile' style={{ cursor: 'pointer', color: '#000' }}>
                         <Avatar style={{ backgroundColor: '#000', boxShadow: '3px 3px 0px 0px #F5F300' }} icon={<img src={avatar} />} />
                         <span style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 0 10px' }}>Profile</span>
-                      </span> :
+                      </Link> :
                       <span className='button' onClick={() => setIsLoginModalOpen(!isLoginModalOpen)}>
                         Sign Up
                       </span>
